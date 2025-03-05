@@ -1,4 +1,4 @@
 # wrangler.toml
-name = "aws-metadata-proxy-sone-se-pahile"
+name = "aws-metadata-proxy"
 main = "index.js"  # Your entry file
 compatibility_date = "2024-05-30"
